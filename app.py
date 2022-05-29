@@ -43,7 +43,7 @@ def get_bond(codigo:str):
     raise HTTPException(status_code=404, detail="Bono no encontrado")
 
 @app.get('/bonos/moneda/{moneda}/{size}')
-def get_currency_bond(moneda:str, size:Union[int, None]= 100):    
+def get_currency_bond(moneda:str, size:int= 100):    
     if moneda=="pesos":        
         df = df_pesos.iloc[:size]
         if len (df)!=0:            
