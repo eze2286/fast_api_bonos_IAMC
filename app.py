@@ -40,9 +40,9 @@ def get_bond(codigo:str):
         return js
     raise HTTPException(status_code=404, detail="Bono no encontrado")
 
-@app.get('/bonos/moneda/{moneda}')
-def get_currency_bond(moneda:str):        
-    df = df_bonos_iamc[df_bonos_iamc["Moneda"]==moneda].set_index("Fecha")
+@app.get('/bonos/{codigo}/{moneda}')
+def get_currency_bond(moneda:str, codigo:str):        
+    df = df_bonos_iamc[(df_bonos_iamc["Codigo"]==codigo)&(df_bonos_iamc["Moneda"]==moneda)].set_index("Fecha")
     if len (df)!=0:
         js =  json.loads(df.to_json(orient = 'records'))
         return js
