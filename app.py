@@ -2,7 +2,7 @@ from fastapi import FastAPI, HTTPException
 # from pydantic import BaseModel
 import json
 import pandas as pd
-from queries.data import df_bonos_iamc_json, df_bonos_iamc
+from queries.data import df_bonos_iamc_json, df_bonos_iamc, df_pesos, df_dolares, df_pesos_json, df_dolares_json
 # from alphacast import Alphacast
 # from password import API_key
 # import json
@@ -46,14 +46,18 @@ def get_bond(codigo:str):
 def get_currency_bond(moneda:str):        
     # df = df_bonos_iamc[df_bonos_iamc["Moneda"]==moneda].set_index("Fecha")
     if moneda=="pesos":
-        df = df_bonos_iamc[df_bonos_iamc["Moneda"]=="pesos"].set_index("Fecha")
+        # df = df_bonos_iamc[df_bonos_iamc["Moneda"]=="pesos"].set_index("Fecha")
+        df = df_pesos
         if len (df)!=0:
-            js =  json.loads(df.to_json(orient = 'records'))            
+            # js =  json.loads(df.to_json(orient = 'records'))
+            js = df_pesos_json            
             return js
     elif moneda=="dolares":
-        df = df_bonos_iamc[df_bonos_iamc["Moneda"]=="dolares"].set_index("Fecha")
+        # df = df_bonos_iamc[df_bonos_iamc["Moneda"]=="dolares"].set_index("Fecha")
+        df = df_dolares
         if len (df)!=0:
-            js =  json.loads(df.to_json(orient = 'records'))            
+            # js =  json.loads(df.to_json(orient = 'records'))
+            js = df_dolares_json            
             return js
 
     raise HTTPException(status_code=404, detail="Moneda no encontrada")  
