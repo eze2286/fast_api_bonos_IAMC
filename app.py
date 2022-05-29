@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException
 import json
 import pandas as pd
-from queries.data import df_bonos_iamc_json, df_bonos_iamc, df_pesos, df_dolares
+from queries.data import df_bonos_iamc_json, df_bonos_iamc, df_pesos, df_dolares, list_tickers
 
 tags_metadata = [
   {
@@ -47,6 +47,8 @@ def get_currency_bond(moneda:str, size:int= 100):
             return js
     raise HTTPException(status_code=404, detail="Moneda no encontrada")  
            
-    
+@app.get('/bonos/tickers')
+def get_tickers():       
+    return list_tickers 
 
 
