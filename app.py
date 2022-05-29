@@ -21,6 +21,10 @@ app = FastAPI(title="API bonos IAMC (base=2017)",
 def welcome_api():
     return "Welcome to API from IAMC_Bonds"
 
+@app.get('/tickers')
+def get_tickers():       
+    return list_tickers
+
 @app.get('/bonos')
 def get_all_bonds():       
     return df_bonos_iamc_json
@@ -47,8 +51,6 @@ def get_currency_bond(moneda:str, size:int= 100):
             return js
     raise HTTPException(status_code=404, detail="Moneda no encontrada")  
            
-@app.get('/tickers')
-def get_tickers():       
-    return list_tickers 
+ 
 
 
