@@ -1,6 +1,5 @@
 import pandas as pd
 from alphacast import Alphacast
-# from password import API_key
 import json
 
 API_key = "ak_InwypYyuGx9GQlWNUHDf"
@@ -9,5 +8,4 @@ df_bonos_iamc = alphacast.datasets.dataset(7961).download_data("pandas").iloc[:,
 df_bonos_iamc_json = alphacast.datasets.dataset(7961).download_data("json")
 df_pesos = df_bonos_iamc[df_bonos_iamc["Moneda"]=="pesos"]
 df_dolares = df_bonos_iamc[df_bonos_iamc["Moneda"]=="dolares"]
-# df_pesos_json= json.loads(df_pesos.to_json(orient = 'records'))
-# df_dolares_json= json.loads(df_dolares.to_json(orient = 'records'))
+
