@@ -47,7 +47,7 @@ def get_currency_bond(moneda:str, size:int= 100):
             return js
     raise HTTPException(status_code=404, detail="Moneda no encontrada")  
            
-@app.get('/bonos/tickers')
+@app.get('/tickers')
 def get_tickers():       
     return list_tickers 
 
