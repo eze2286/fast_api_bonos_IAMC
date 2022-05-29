@@ -2,7 +2,7 @@ from fastapi import FastAPI, HTTPException
 # from pydantic import BaseModel
 import json
 import pandas as pd
-from queries.data import df_bonos_iamc_json, df_bonos_iamc, df_pesos, df_dolares, df_pesos_json, df_dolares_json
+from queries.data import df_bonos_iamc_json, df_bonos_iamc, df_pesos, df_dolares
 # from alphacast import Alphacast
 # from password import API_key
 # import json
@@ -30,8 +30,7 @@ def welcome_api():
     return "Welcome to API from IAMC_Bonds"
 
 @app.get('/bonos')
-def get_all_bonds():
-    # df_bonos_iamc_json = alphacast.datasets.dataset(7961).download_data("json")   
+def get_all_bonds():       
     return df_bonos_iamc_json
 
 @app.get('/bonos/{codigo}')
@@ -42,24 +41,18 @@ def get_bond(codigo:str):
         return js
     raise HTTPException(status_code=404, detail="Bono no encontrado")
 
-@app.get('/bonos/moneda/{moneda}')
-def get_currency_bond(moneda:str):        
-    # df = df_bonos_iamc[df_bonos_iamc["Moneda"]==moneda].set_index("Fecha")
-    if moneda=="pesos":
-        # df = df_bonos_iamc[df_bonos_iamc["Moneda"]=="pesos"].set_index("Fecha")
-        df = df_pesos
-        if len (df)!=0:
-            # js =  json.loads(df.to_json(orient = 'records'))
-            js = df_pesos_json            
+@app.get('/bonos/moneda/{moneda}/{size}')
+def get_currency_bond(moneda:str, size:int=100):    
+    if moneda=="pesos":        
+        df = df_pesos.iloc[:size]
+        if len (df)!=0:            
+            js = json.loads(df.to_json(orient = 'records'))            
             return js
-    elif moneda=="dolares":
-        # df = df_bonos_iamc[df_bonos_iamc["Moneda"]=="dolares"].set_index("Fecha")
-        df = df_dolares
-        if len (df)!=0:
-            # js =  json.loads(df.to_json(orient = 'records'))
-            js = df_dolares_json            
+    elif moneda=="dolares":        
+        df = df_dolares.iloc[:size]
+        if len (df)!=0:            
+            js = json.loads(df.to_json(orient = 'records'))            
             return js
-
     raise HTTPException(status_code=404, detail="Moneda no encontrada")  
            
     
