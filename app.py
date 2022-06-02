@@ -22,7 +22,10 @@ def welcome_api():
     return "Welcome to API from IAMC_Bonds"
 
 @app.get('/tickers')
-def get_tickers():       
+def get_tickers():
+    """
+        Obtención de los códigos correspondientes a cada unos de los bonos del dataset
+    """       
     return list_tickers
 
 @app.get('/bonos')
