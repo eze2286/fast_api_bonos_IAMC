@@ -10,7 +10,7 @@ tags_metadata = [
   }
 ]
 
-app = FastAPI(title="API bonos IAMC (base=2017)", 
+app = FastAPI(title="API bonos IAMC (base=2016)", 
               description= "Obtencion de información sobre bonos argentinos listados en IAMC",
               version= "0.0.1",
               openapi_tags=tags_metadata
