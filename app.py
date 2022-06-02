@@ -29,11 +29,17 @@ def get_tickers():
     return list_tickers
 
 @app.get('/bonos')
-def get_all_bonds():       
+def get_all_bonds():
+    """
+        Obtención de toda la serie correspondiente a la totalidad de los bonos del dataset
+    """        
     return df_bonos_iamc_json
 
 @app.get('/bonos/{codigo}')
-def get_bond(codigo:str):        
+def get_bond(codigo:str):
+    """
+        Obtención de la información correspondiente al bono seleccionado en base a su codigo
+    """        
     df = df_bonos_iamc[df_bonos_iamc["Codigo"]==codigo]    
     if len (df)!=0:
         js =  json.loads(df.to_json(orient = 'records'))
@@ -41,7 +47,12 @@ def get_bond(codigo:str):
     raise HTTPException(status_code=404, detail="Bono no encontrado")
 
 @app.get('/bonos/moneda/{moneda}/{size}')
-def get_bond_by_currency(moneda:str, size:int= 100):    
+def get_bond_by_currency(moneda:str, size:int= 100):
+    """
+        Obtención de la información correspondiente a cada bono en base a la moneda (pesos/dolares)
+        seleccionada como parametro. Adiionalmente se debe pasar como parámetro un size (ejemplo 100)
+        para indicar la cantidad de datos a visualizar.
+    """    
     if moneda=="pesos":        
         df = df_pesos.iloc[:size]
         if len (df)!=0:            
