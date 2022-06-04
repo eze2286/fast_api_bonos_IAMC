@@ -52,7 +52,7 @@ def get_bond_by_year(year:int):
         Obtención de toda la serie correspondiente a los bonos, filtrado de acuerdo al año
         seleccionado
     """        
-    df = df_bonos_iamc[df_bonos_iamc["year"]==str(year)]    
+    df = df_bonos_iamc[df_bonos_iamc["year"]==year]    
     if len (df)!=0:
         js =  json.loads(df.to_json(orient = 'records'))
         return js        
