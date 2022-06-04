@@ -67,7 +67,7 @@ def get_bond_by_year(year:int):
     if len (df)!=0:
         js =  json.loads(df.to_json(orient = 'records'))
         return js        
-    raise HTTPException(status_code=404, detail="Bono no encontrado")
+    raise HTTPException(status_code=404, detail="Fecha no encontrada")
 
 @app.get('/bonos/moneda/{moneda}/{size}')
 def get_bond_by_currency(moneda:str, size:int= 100):
