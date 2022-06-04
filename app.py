@@ -46,7 +46,7 @@ def get_bond(codigo:str):
         return js
     raise HTTPException(status_code=404, detail="Bono no encontrado")
 
-@app.get('/bonos/{codigo}/{year}')
+@app.get('/bonos/data/{codigo}/{year}')
 def get_bond_by_tick_year(codigo:str, year:int):
     """
         Obtención de la información correspondiente al bono seleccionado en base a su codigo y año
