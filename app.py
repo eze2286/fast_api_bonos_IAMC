@@ -55,7 +55,7 @@ def get_bond_by_tick_year(codigo:str, year:int):
     if len (df)!=0:
         js =  json.loads(df.to_json(orient = 'records'))
         return js
-    raise HTTPException(status_code=404, detail="Bono no encontrado")
+    raise HTTPException(status_code=404, detail="Bono o año no encontrado")
 
 @app.get('/bonos/fecha/{year}')
 def get_bond_by_year(year:int):
