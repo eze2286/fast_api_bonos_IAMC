@@ -46,13 +46,13 @@ def get_bond(codigo:str):
         return js
     raise HTTPException(status_code=404, detail="Bono no encontrado")
 
-@app.get('/bonos/fecha/{año}')
-def get_bond_by_year(año:str):
+@app.get('/bonos/fecha/{year}')
+def get_bond_by_year(year:int):
     """
         Obtención de toda la serie correspondiente a los bonos, filtrado de acuerdo al año
         seleccionado
     """        
-    df = df_bonos_iamc[df_bonos_iamc["Fecha"].str.startswith(str(año))]    
+    df = df_bonos_iamc[df_bonos_iamc["Fecha"].str.startswith(str(year))]    
     if len (df)!=0:
         js =  json.loads(df.to_json(orient = 'records'))
         return js
