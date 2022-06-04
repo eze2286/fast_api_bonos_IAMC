@@ -54,8 +54,9 @@ def get_bond_by_year(year:int):
     """        
     df = df_bonos_iamc[df_bonos_iamc["Fecha"].str.startswith(str(year))]    
     if len (df)!=0:
-        js =  json.loads(df.to_json(orient = 'records'))
-        return js
+        # js =  json.loads(df.to_json(orient = 'records'))
+        # return js
+        return df
     raise HTTPException(status_code=404, detail="Bono no encontrado")
 
 @app.get('/bonos/moneda/{moneda}/{size}')
