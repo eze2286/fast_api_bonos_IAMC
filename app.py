@@ -8,7 +8,7 @@ tags_metadata = [
     "name": "bonos",
     "description": "bonos endpoint",
     "externalDocs": {
-            "description": "La fuente de los datos es IAMC y el respositorio completo se encuentra en Alpahcast",
+            "description": "Fuente: IAMC",
             "url": "https://www.alphacast.io/datasets/7961",
         }, 
   }
@@ -21,7 +21,7 @@ app = FastAPI(title="API bonos IAMC (base=2011)",
                 )
 
 
-@app.get('/')
+@app.get('/', tags=["Welcome"])
 async def welcome_api():
     return "Welcome to API from IAMC_Bonds"
 
