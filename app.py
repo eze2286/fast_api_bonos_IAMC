@@ -90,7 +90,7 @@ async def get_bond_by_currency(moneda:str, size:int= 100):
         if len (df)!=0:            
             js = json.loads(df.to_json(orient = 'records'))            
             return js
-    raise HTTPException(status_code=404, detail="Moneda no encontrada")  
+    raise HTTPException(status_code=404, detail="Moneda no encontrada")
            
  
 
