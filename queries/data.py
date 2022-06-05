@@ -10,7 +10,7 @@ alphacast = Alphacast(API_key)
 # df_bonos_iamc = alphacast.datasets.dataset(7961).download_data("pandas").iloc[:,:-1]
 df_bonos_iamc = alphacast.datasets.dataset(7961).download_data("pandas")
 # df_bonos_iamc_json = alphacast.datasets.dataset(7961).download_data("json")
-df_bonos_iamc_json = df_bonos_iamc.to_json()
+df_bonos_iamc_json = df_bonos_iamc.set_index("Fecha").to_json(orient = 'records')
 df_bonos_iamc["year"] = df_bonos_iamc["Fecha"].apply(lambda x: pd.to_numeric(x[:4]))
 
 df_pesos = df_bonos_iamc[df_bonos_iamc["Moneda"]=="pesos"]
