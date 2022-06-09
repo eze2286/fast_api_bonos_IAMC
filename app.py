@@ -91,6 +91,18 @@ async def get_bond_by_currency(moneda:str, size:int= 100):
             js = json.loads(df.to_json(orient = 'records'))            
             return js
     raise HTTPException(status_code=404, detail="Moneda no encontrada")
+
+@app.get('/bonos/paridad/{valor_paridad}')
+def get_bond_by_parity(valor_paridad:int):
+    """
+        Obtención de la serie de bonos, cutos valores de paridad son menores al valor
+        seleccionado
+    """        
+    df = df_bonos_iamc[df_bonos_iamc["Paridad"]<valor_paridad]    
+    if len (df)!=0:
+        # js =  json.loads(df.to_json(orient = 'records'))
+        return df
+    raise HTTPException(status_code=404, detail="Valor de paridad no encontrado")
            
  
 
