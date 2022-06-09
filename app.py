@@ -100,8 +100,8 @@ def get_bond_by_parity(valor_paridad:int):
     """        
     df = df_bonos_iamc[df_bonos_iamc["Paridad"]<valor_paridad]    
     if len (df)!=0:
-        # js =  json.loads(df.to_json(orient = 'records'))
-        return df
+        js =  json.loads(df.to_json(orient = 'records'))
+        return js
     raise HTTPException(status_code=404, detail="Valor de paridad no encontrado")
            
  
