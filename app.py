@@ -92,7 +92,7 @@ async def get_bond_by_currency(moneda:str, size:int= 100):
             return js
     raise HTTPException(status_code=404, detail="Moneda no encontrada")
 
-@app.get('/bonos/paridad/{valor_paridad}')
+@app.get('/bonos/paridad/{valor_paridad}', tags=["Bonds by Parity"])
 def get_bond_by_parity(valor_paridad:int):
     """
         Obtención de la serie de bonos, cuyos valores de paridad son mayores al valor
@@ -103,7 +103,7 @@ def get_bond_by_parity(valor_paridad:int):
         js =  json.loads(df.to_json(orient = 'records'))
         return js
     raise HTTPException(status_code=404, detail="Valor de paridad no encontrado")
-@app.get('/bonos/yield/{yield_}')
+@app.get('/bonos/yield/{yield_}', tags=["Bonds by Yield Anual"])
 def get_bond_by_Yield_Anual(yield_:int):
     """
         Obtención de la serie de bonos, cuyos valores de yield_anual son mayores al valor
