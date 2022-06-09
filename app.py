@@ -95,15 +95,25 @@ async def get_bond_by_currency(moneda:str, size:int= 100):
 @app.get('/bonos/paridad/{valor_paridad}')
 def get_bond_by_parity(valor_paridad:int):
     """
-        Obtención de la serie de bonos, cutos valores de paridad son menores al valor
+        Obtención de la serie de bonos, cuyos valores de paridad son mayores al valor
         seleccionado
     """        
-    df = df_bonos_iamc[df_bonos_iamc["Paridad"]<valor_paridad]    
+    df = df_bonos_iamc[df_bonos_iamc["Paridad"]>valor_paridad]    
     if len (df)!=0:
         js =  json.loads(df.to_json(orient = 'records'))
         return js
     raise HTTPException(status_code=404, detail="Valor de paridad no encontrado")
-           
+@app.get('/bonos/yield/{yield_}')
+def get_bond_by_Yield_Anual(yield_:int):
+    """
+        Obtención de la serie de bonos, cuyos valores de yield_anual son mayores al valor
+        seleccionado
+    """        
+    df = df_bonos_iamc[df_bonos_iamc["Yield_Anual"]>yield_]    
+    if len (df)!=0:
+        js =  json.loads(df.to_json(orient = 'records'))
+        return js
+    raise HTTPException(status_code=404, detail="Valor de paridad no encontrado")
  
 
 
