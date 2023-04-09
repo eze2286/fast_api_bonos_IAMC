@@ -2,12 +2,12 @@ import pandas as pd
 from alphacast import Alphacast
 import json
 
-#with open ("queries/key.csv", "r") as f:
-#    key = f.read()
+with open ("queries/key.csv", "r") as f:
+    key = f.read()
 
-#API_key = str(key)
+API_key = str(key)
 
-API_key = "ak_InwypYyuGx9GQlWNUHDf"
+
 alphacast = Alphacast(API_key)
 # df_bonos_iamc = alphacast.datasets.dataset(7961).download_data("pandas").iloc[:,:-1]
 df_bonos_iamc = alphacast.datasets.dataset(7961).download_data("pandas")
